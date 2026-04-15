@@ -4,21 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>龍蝦王｜AI 工程師履歷</title>
-  <meta name="description" content="龍蝦王 的個人履歷網站，專長涵蓋前端、後端、AI 影像辨識、DevOps 與跨平台開發。" />
+  <title>小寶｜全端工程師履歷</title>
+  <meta name="description" content="小寶 的個人履歷網站，專長涵蓋前端、後端、AI 影像辨識、DevOps 與跨平台開發。" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&family=Share+Tech+Mono&display=swap');
+
     :root {
-      --bg: #07111f;
-      --bg-soft: rgba(10, 22, 38, 0.8);
-      --panel: rgba(11, 24, 43, 0.78);
-      --panel-strong: rgba(14, 31, 55, 0.92);
-      --line: rgba(96, 226, 255, 0.16);
-      --primary: #61f3ff;
-      --primary-strong: #00cfff;
-      --accent: #7c8cff;
-      --text: #e9f7ff;
-      --muted: #9bb4c8;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --bg: #0a0a0f;
+      --bg-soft: rgba(10, 10, 20, 0.85);
+      --bg-panel: rgba(10, 10, 20, 0.92);
+      --line: rgba(252, 238, 9, 0.22);
+      --line-strong: rgba(252, 238, 9, 0.66);
+      --primary: #fcee09;
+      --secondary: #ff003c;
+      --tertiary: #00f0ff;
+      --text: #e0e0e0;
+      --muted: #9b9baa;
+      --shadow-yellow: 0 0 12px rgba(252, 238, 9, 0.4), 0 0 32px rgba(252, 238, 9, 0.15);
+      --shadow-pink: 0 0 18px rgba(255, 0, 60, 0.25);
+      --shadow-cyan: 0 0 18px rgba(0, 240, 255, 0.25);
       --radius-lg: 24px;
       --radius-md: 18px;
       --radius-sm: 12px;
@@ -35,29 +39,51 @@
 
     body {
       margin: 0;
-      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-family: 'Rajdhani', 'Noto Sans TC', sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(0, 207, 255, 0.14), transparent 32%),
-        radial-gradient(circle at 85% 15%, rgba(124, 140, 255, 0.16), transparent 26%),
-        linear-gradient(180deg, rgba(6, 13, 25, 0.86), rgba(4, 10, 19, 0.97)),
-        url('images/bg.jpg') center top / cover fixed no-repeat;
+        radial-gradient(circle at 15% 20%, rgba(255, 0, 60, 0.12), transparent 0 28%),
+        radial-gradient(circle at 85% 12%, rgba(0, 240, 255, 0.12), transparent 0 26%),
+        linear-gradient(135deg, rgba(252, 238, 9, 0.05), transparent 32%),
+        linear-gradient(180deg, rgba(8, 8, 14, 0.96), rgba(10, 10, 15, 1)),
+        #0a0a0f;
       min-height: 100vh;
       line-height: 1.7;
       overflow-x: hidden;
+      position: relative;
     }
 
     body::before {
-      content: "";
+      content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        linear-gradient(rgba(97, 243, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(97, 243, 255, 0.025) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
       z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(255, 0, 60, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 20% 20%, rgba(252, 238, 9, 0.1), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.08), transparent 26%);
+      background-size: 120px 120px, 120px 120px, auto, auto;
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      animation: circuitShift 16s linear infinite;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.14) 0px,
+        rgba(0, 0, 0, 0.14) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
     }
 
     a {
@@ -77,13 +103,32 @@
       z-index: 1;
     }
 
+    .neon-text {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 40px var(--primary), 0 0 80px var(--secondary);
+    }
+
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(6, 14, 27, 0.7);
-      border-bottom: 1px solid rgba(97, 243, 255, 0.08);
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(6, 6, 10, 0.78);
+      border-bottom: 1px solid rgba(252, 238, 9, 0.18);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .site-header::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--tertiary), transparent);
+      box-shadow: 0 0 12px rgba(252, 238, 9, 0.6);
     }
 
     .nav {
@@ -91,25 +136,61 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
-      min-height: 72px;
+      min-height: 76px;
+      position: relative;
     }
 
     .logo {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--primary);
-      text-shadow: 0 0 18px rgba(97, 243, 255, 0.35);
+      text-shadow: 0 0 12px rgba(252, 238, 9, 0.45);
       white-space: nowrap;
     }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(252, 238, 9, 0.35);
+      border-radius: 12px;
+      background: rgba(10, 10, 20, 0.78);
+      color: var(--primary);
+      box-shadow: var(--shadow-yellow);
+      cursor: pointer;
+    }
+
+    .nav-toggle span,
+    .nav-toggle::before,
+    .nav-toggle::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      transition: 0.25s ease;
+      position: absolute;
+    }
+
+    .nav-toggle span { transform: translateY(0); }
+    .nav-toggle::before { transform: translateY(-7px); }
+    .nav-toggle::after { transform: translateY(7px); }
+
+    .nav-toggle.is-active span { opacity: 0; }
+    .nav-toggle.is-active::before { transform: rotate(45deg); }
+    .nav-toggle.is-active::after { transform: rotate(-45deg); }
 
     .nav-links {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 12px;
       margin: 0;
       padding: 0;
     }
@@ -118,153 +199,281 @@
       display: inline-flex;
       align-items: center;
       padding: 10px 14px;
+      border: 1px solid transparent;
       border-radius: 999px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       transition: 0.25s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text);
-      background: rgba(97, 243, 255, 0.08);
-      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.14);
+      color: var(--primary);
+      border-color: rgba(252, 238, 9, 0.36);
+      background: rgba(252, 238, 9, 0.06);
+      box-shadow: inset 0 0 18px rgba(252, 238, 9, 0.08), 0 0 18px rgba(252, 238, 9, 0.08);
     }
 
     .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 128px 0 80px;
       position: relative;
-      padding: 110px 0 90px;
-      background:
-        linear-gradient(135deg, rgba(6, 14, 27, 0.82), rgba(4, 11, 21, 0.64)),
-        url('images/bg1.jpg') center center / cover no-repeat;
       overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
+    .hero::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(97, 243, 255, 0.08), transparent 52%);
-      pointer-events: none;
+      inset: 10% -10% auto auto;
+      width: 42vw;
+      height: 42vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 0, 60, 0.16), transparent 62%);
+      filter: blur(10px);
+      opacity: 0.85;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto auto -18% -10%;
+      width: 36vw;
+      height: 36vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.16), transparent 62%);
+      filter: blur(8px);
+      opacity: 0.8;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 36px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
       align-items: center;
     }
 
-    .eyebrow {
+    .eyebrow,
+    .tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(97, 243, 255, 0.18);
-      background: rgba(10, 22, 38, 0.6);
-      color: var(--primary);
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      margin-bottom: 20px;
+      border: 1px solid rgba(0, 240, 255, 0.24);
+      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+      background: rgba(0, 240, 255, 0.06);
+      color: var(--tertiary);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.86rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-cyan);
     }
 
-    .hero h1 {
-      margin: 0;
-      font-size: clamp(2.4rem, 6vw, 4.8rem);
-      line-height: 1.08;
-      letter-spacing: 0.02em;
+    .hero-copy {
+      position: relative;
+      z-index: 1;
     }
 
-    .hero h1 span {
-      color: var(--primary);
-      text-shadow: 0 0 28px rgba(97, 243, 255, 0.28);
-    }
-
-    .hero p {
+    .hero-copy h1 {
       margin: 20px 0 0;
-      max-width: 680px;
-      font-size: 1.04rem;
-      color: #c6d9e7;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h1 .subline {
+      display: block;
+      margin-top: 10px;
+      font-size: clamp(1.3rem, 2.2vw, 2rem);
+      color: var(--text);
+      text-shadow: 0 0 12px rgba(224, 224, 224, 0.16);
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(252, 238, 9, 0.55), 0 0 30px rgba(252, 238, 9, 0.2);
+      animation: glitch 1.4s infinite steps(2, end);
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    .glitch::before {
+      color: var(--secondary);
+      transform: translate(-2px, -1px);
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+
+    .glitch::after {
+      color: var(--tertiary);
+      transform: translate(2px, 1px);
+      clip-path: polygon(0 58%, 100% 58%, 100% 100%, 0 100%);
+    }
+
+    .hero-copy p {
+      max-width: 720px;
+      margin: 26px 0 0;
+      font-size: 1.08rem;
+      color: rgba(224, 224, 224, 0.82);
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
+      gap: 16px;
+      margin-top: 34px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-width: 150px;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 700;
+      min-width: 158px;
+      padding: 14px 22px;
+      border: 1px solid rgba(252, 238, 9, 0.28);
+      clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+      background: rgba(10, 10, 20, 0.76);
+      color: var(--text);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       transition: 0.25s ease;
-      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 15%, rgba(255, 255, 255, 0.12) 50%, transparent 85%);
+      transform: translateX(-130%);
+      transition: transform 0.45s ease;
+    }
+
+    .btn:hover::before {
+      transform: translateX(130%);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
     }
 
     .btn-primary {
-      color: #021019;
-      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
-      box-shadow: 0 14px 32px rgba(0, 207, 255, 0.24);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 36px rgba(0, 207, 255, 0.3);
+      color: #101010;
+      background: linear-gradient(90deg, var(--primary), #fff36a);
+      border-color: rgba(252, 238, 9, 0.72);
+      box-shadow: 0 0 22px rgba(252, 238, 9, 0.35);
     }
 
     .btn-secondary {
-      color: var(--text);
-      background: rgba(97, 243, 255, 0.06);
-      border-color: rgba(97, 243, 255, 0.18);
+      border-color: rgba(0, 240, 255, 0.35);
+      color: var(--tertiary);
+      box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.06), 0 0 14px rgba(0, 240, 255, 0.12);
     }
 
-    .btn-secondary:hover {
-      background: rgba(97, 243, 255, 0.12);
-      transform: translateY(-2px);
+    .hero-card,
+    .skill-card,
+    .panel,
+    .portfolio-card,
+    .contact-item,
+    .contact-panel,
+    .contact-card {
+      background: linear-gradient(180deg, rgba(12, 12, 20, 0.88), rgba(10, 10, 20, 0.96));
+      border: 1px solid rgba(252, 238, 9, 0.12);
+      box-shadow: 0 0 0 1px rgba(255, 0, 60, 0.05), 0 18px 45px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-card::before,
+    .skill-card::before,
+    .panel::before,
+    .portfolio-card::before,
+    .contact-item::before,
+    .contact-panel::before,
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(252, 238, 9, 0.06), transparent 40%, rgba(0, 240, 255, 0.05));
+      z-index: -1;
+    }
+
+    .hero-card,
+    .panel,
+    .contact-card,
+    .contact-panel {
+      border-radius: var(--radius-lg);
+    }
+
+    .skill-card,
+    .portfolio-card,
+    .contact-item,
+    .progress-item {
+      border-radius: var(--radius-md);
     }
 
     .hero-card {
-      padding: 26px;
-      background: linear-gradient(180deg, rgba(15, 32, 56, 0.88), rgba(9, 19, 34, 0.75));
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      padding: 28px;
+      clip-path: polygon(0 18px, 18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+      backdrop-filter: blur(12px);
     }
 
-    .hero-card h2 {
-      margin: 0 0 10px;
-      font-size: 1.15rem;
+    .hero-card h2,
+    .skill-card h3,
+    .contact-panel h3,
+    .contact-title {
+      margin-top: 0;
+      font-family: 'Orbitron', sans-serif;
       color: var(--primary);
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 10px rgba(252, 238, 9, 0.24);
+    }
+
+    .hero-card p {
+      margin-bottom: 0;
+      color: rgba(224, 224, 224, 0.8);
     }
 
     .hero-highlights {
       display: grid;
       gap: 14px;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     .highlight-item {
-      padding: 14px 16px;
-      border-radius: var(--radius-sm);
-      background: rgba(97, 243, 255, 0.05);
-      border: 1px solid rgba(97, 243, 255, 0.08);
+      padding: 16px 16px 16px 20px;
+      border-left: 2px solid var(--secondary);
+      background: rgba(255, 255, 255, 0.02);
+      clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
     }
 
     .highlight-item strong {
       display: block;
-      font-size: 1.1rem;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 4px;
+      font-family: 'Share Tech Mono', monospace;
     }
 
     section {
-      padding: 84px 0;
+      padding: 92px 0;
       position: relative;
       z-index: 1;
     }
@@ -273,31 +482,20 @@
       margin-bottom: 28px;
     }
 
-    .section-heading .tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--primary);
-      letter-spacing: 0.12em;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-    }
-
     .section-heading h2 {
-      margin: 0;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin: 16px 0 0;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-shadow: 0 0 16px rgba(252, 238, 9, 0.26);
     }
 
     .section-heading p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      max-width: 720px;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+      margin: 12px 0 0;
+      max-width: 760px;
+      color: rgba(224, 224, 224, 0.72);
     }
 
     .skills-grid {
@@ -308,22 +506,18 @@
 
     .skill-card {
       padding: 24px;
-      background: linear-gradient(180deg, rgba(14, 29, 49, 0.92), rgba(9, 19, 34, 0.8));
-      border: 1px solid rgba(97, 243, 255, 0.12);
-      border-radius: var(--radius-md);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      clip-path: polygon(0 16px, 16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
     }
 
-    .skill-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(97, 243, 255, 0.28);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
-    }
-
-    .skill-card h3 {
-      margin: 0 0 14px;
-      color: var(--primary);
-      font-size: 1.2rem;
+    .skill-card:hover,
+    .portfolio-card:hover,
+    .contact-item:hover,
+    .contact-panel:hover,
+    .contact-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(252, 238, 9, 0.68);
+      box-shadow: 0 0 0 1px rgba(255, 0, 60, 0.22), 0 0 18px rgba(252, 238, 9, 0.18), 0 0 30px rgba(255, 0, 60, 0.14);
     }
 
     .skill-card ul {
@@ -336,27 +530,22 @@
 
     .skill-card li {
       position: relative;
-      padding-left: 18px;
-      color: #d6e8f4;
+      padding-left: 26px;
+      color: rgba(224, 224, 224, 0.9);
     }
 
     .skill-card li::before {
-      content: "";
+      content: '⬢';
       position: absolute;
       left: 0;
-      top: 0.72em;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      box-shadow: 0 0 14px rgba(97, 243, 255, 0.45);
+      top: 0;
+      color: var(--tertiary);
+      font-size: 0.9rem;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
     }
 
     .proficiency-wrap {
       padding: 28px;
-      background:
-        linear-gradient(180deg, rgba(14, 29, 49, 0.9), rgba(8, 18, 32, 0.82));
-      background-size: cover;
     }
 
     .progress-list {
@@ -367,9 +556,8 @@
 
     .progress-item {
       padding: 18px;
-      border-radius: var(--radius-md);
+      border: 1px solid rgba(0, 240, 255, 0.14);
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(97, 243, 255, 0.08);
     }
 
     .progress-meta {
@@ -377,11 +565,13 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 10px;
-      font-weight: 700;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0.04em;
     }
 
     .progress-meta span:last-child {
       color: var(--primary);
+      text-shadow: 0 0 10px rgba(252, 238, 9, 0.25);
     }
 
     .progress-track {
@@ -390,32 +580,40 @@
       overflow: hidden;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.06);
-      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.08);
+      border: 1px solid rgba(252, 238, 9, 0.08);
+      box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.45);
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      box-shadow: 0 0 20px rgba(97, 243, 255, 0.4);
+      background: linear-gradient(90deg, var(--primary), #fff36a, var(--secondary));
+      box-shadow: 0 0 14px rgba(252, 238, 9, 0.55), 0 0 26px rgba(255, 0, 60, 0.18);
       transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+      animation: sweep 2.8s linear infinite;
     }
 
     .profile-card {
       padding: 34px;
-      background:
-        linear-gradient(180deg, rgba(9, 20, 36, 0.88), rgba(9, 20, 36, 0.82)),
-        url('images/bg1.jpg') center center / cover no-repeat;
     }
 
     .profile-text {
-      font-size: 1.06rem;
-      color: #d9ebf8;
+      font-size: 1.08rem;
+      color: rgba(224, 224, 224, 0.88);
     }
 
     .profile-text strong {
       color: var(--primary);
+      text-shadow: 0 0 10px rgba(252, 238, 9, 0.25);
     }
 
     .profile-links {
@@ -429,17 +627,20 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      background: rgba(97, 243, 255, 0.08);
-      border: 1px solid rgba(97, 243, 255, 0.14);
-      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 240, 255, 0.22);
+      background: rgba(0, 240, 255, 0.06);
+      color: var(--tertiary);
+      font-family: 'Share Tech Mono', monospace;
       transition: 0.25s ease;
     }
 
     .social-link:hover {
       transform: translateY(-2px);
-      background: rgba(97, 243, 255, 0.12);
+      color: var(--primary);
+      border-color: rgba(252, 238, 9, 0.36);
+      box-shadow: 0 0 18px rgba(252, 238, 9, 0.12);
     }
 
     .portfolio-grid {
@@ -449,56 +650,65 @@
     }
 
     .portfolio-card {
+      min-height: 340px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+    .portfolio-card .preview {
       position: relative;
+      width: 100%;
+      height: 200px;
       overflow: hidden;
-      min-height: 230px;
-      padding: 22px;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(97, 243, 255, 0.1);
-      background: linear-gradient(180deg, rgba(15, 31, 53, 0.95), rgba(9, 18, 33, 0.84));
+      border-bottom: 1px solid rgba(252,238,9,0.08);
+      background: #0a0a12;
+    }
+    .portfolio-card .preview iframe {
+      width: 300%;
+      height: 300%;
+      border: none;
+      transform: scale(0.333);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .portfolio-card .card-body {
+      padding: 18px 22px;
+      flex: 1;
+    }
+    .portfolio-card-placeholder {
       transition: 0.3s ease;
-      isolation: isolate;
-    }
-
-    .portfolio-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -20% -45% auto;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(97, 243, 255, 0.24), transparent 65%);
-      z-index: -1;
-    }
-
-    .portfolio-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(97, 243, 255, 0.26);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+      clip-path: polygon(0 18px, 18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
     }
 
     .portfolio-card .index {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 42px;
+      min-width: 52px;
       height: 42px;
-      border-radius: 50%;
-      background: rgba(97, 243, 255, 0.1);
-      color: var(--primary);
-      font-weight: 800;
+      padding: 0 14px;
       margin-bottom: 18px;
-      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.1);
+      border: 1px solid rgba(252, 238, 9, 0.24);
+      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+      background: rgba(252, 238, 9, 0.08);
+      color: var(--primary);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      box-shadow: var(--shadow-yellow);
     }
 
     .portfolio-card h3 {
       margin: 0 0 10px;
-      font-size: 1.18rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      color: var(--text);
     }
 
     .portfolio-card p {
       margin: 0;
-      color: var(--muted);
+      color: rgba(224, 224, 224, 0.74);
     }
 
     .contact-grid {
@@ -519,62 +729,82 @@
       margin-top: 20px;
     }
 
+    .contact-title {
+      margin-bottom: 12px;
+    }
+
     .contact-item {
       padding: 18px 20px;
-      border-radius: var(--radius-md);
-      background: rgba(97, 243, 255, 0.05);
-      border: 1px solid rgba(97, 243, 255, 0.1);
+      transition: 0.25s ease;
     }
 
     .contact-item small {
       display: block;
       margin-bottom: 6px;
       color: var(--muted);
-      letter-spacing: 0.06em;
+      font-family: 'Share Tech Mono', monospace;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .contact-item a {
       color: var(--primary);
       word-break: break-all;
-    }
-
-    .contact-panel {
-      background:
-        linear-gradient(180deg, rgba(12, 28, 47, 0.92), rgba(8, 18, 33, 0.86)),
-        url('images/bg.jpg') center center / cover no-repeat;
+      text-shadow: 0 0 8px rgba(252, 238, 9, 0.18);
     }
 
     .contact-panel h3 {
-      margin-top: 0;
       margin-bottom: 12px;
-      color: var(--primary);
       font-size: 1.4rem;
     }
 
     .contact-panel p {
       margin: 0;
-      color: #d4e7f5;
+      color: rgba(224, 224, 224, 0.84);
     }
 
     .footer {
-      padding: 28px 16px 40px;
+      padding: 28px 16px 42px;
       text-align: center;
-      color: rgba(233, 247, 255, 0.64);
-      font-size: 0.94rem;
+      color: rgba(252, 238, 9, 0.72);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       position: relative;
       z-index: 1;
+      text-shadow: 0 0 10px rgba(252, 238, 9, 0.2);
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(36px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
     }
 
     .reveal.is-visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 #ff003c, -2px 0 #00f0ff; }
+      20% { text-shadow: -2px 0 #ff003c, 2px 0 #00f0ff; }
+      40% { text-shadow: 2px -2px #ff003c, -2px 2px #00f0ff; }
+      60% { text-shadow: -2px 2px #ff003c, 2px -2px #00f0ff; }
+      80% { text-shadow: 0 2px #ff003c, 0 -2px #00f0ff; }
+      100% { text-shadow: 2px 0 #ff003c, -2px 0 #00f0ff; }
+    }
+
+    @keyframes circuitShift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-12px, 10px, 0) scale(1.03); }
+      100% { transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    @keyframes sweep {
+      from { transform: translateX(-130%); }
+      to { transform: translateX(130%); }
     }
 
     @media (max-width: 980px) {
@@ -587,31 +817,57 @@
       }
 
       .hero {
-        padding: 90px 0 72px;
+        min-height: auto;
+        padding: 122px 0 72px;
       }
     }
 
-    @media (max-width: 720px) {
-      .site-header {
-        position: sticky;
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 72px;
       }
 
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 14px 0 16px;
+      .nav-toggle {
+        display: inline-flex;
+        position: relative;
+        flex-shrink: 0;
       }
 
       .nav-links {
-        justify-content: flex-start;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid rgba(252, 238, 9, 0.18);
+        border-radius: 18px;
+        background: rgba(8, 8, 14, 0.96);
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: 0.25s ease;
+      }
+
+      .nav-links.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        width: 100%;
+        justify-content: center;
       }
 
       section {
-        padding: 68px 0;
+        padding: 72px 0;
       }
 
-      .hero h1 {
-        font-size: clamp(2.1rem, 11vw, 3.2rem);
+      .hero-copy h1 {
+        font-size: clamp(2.4rem, 14vw, 3.9rem);
       }
 
       .hero-card,
@@ -633,8 +889,11 @@
 <body>
   <header class="site-header" id="index">
     <div class="container nav">
-      <a class="logo" href="#index">🦞 龍蝦王 / RESUME</a>
-      <ul class="nav-links">
+      <a class="logo" href="#index">THOR / RESUME</a>
+      <button class="nav-toggle" type="button" aria-label="切換選單" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
         <li><a href="#skill">技能</a></li>
         <li><a href="#skilled">技能熟練度</a></li>
         <li><a href="#profile">個人簡介</a></li>
@@ -647,9 +906,12 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="reveal">
+        <div class="hero-copy reveal">
           <div class="eyebrow">個人履歷 / Full-Stack Engineer</div>
-          <h1>你好，我是 <span>龍蝦王</span><br />超級龍蝦大王 🦞</h1>
+          <h1>
+            你好，我是 <span class="glitch" data-text="小寶">小寶</span>
+            <span class="subline">打造可落地的產品與系統</span>
+          </h1>
           <p>
             專注於全端開發、AI 影像辨識與企業級系統整合，能從前端互動體驗、後端 API、模型部署，到雲端與 DevOps 流程，完整串起實際可上線的產品。
           </p>
@@ -661,7 +923,7 @@
 
         <aside class="hero-card reveal">
           <h2>核心定位</h2>
-          <p>AI 工程師 / 可以養 AI 老婆 / 超級龍蝦大王</p>
+          <p>全端工程師 / AI 系統整合 / 企業監控平台開發</p>
           <div class="hero-highlights">
             <div class="highlight-item">
               <strong>Python / Flask</strong>
@@ -800,7 +1062,7 @@
         <div class="panel profile-card reveal">
           <div class="profile-text">
             <p>
-              <strong>龍蝦王</strong> 是一位 AI 工程師，擅長 Python 後端開發、AI 影像辨識系統、企業級 CCTV 監控平台。
+              <strong>小寶</strong> 是一位全端工程師，擅長 Python 後端開發、AI 影像辨識系統、企業級 CCTV 監控平台。
               具備從零到一的產品開發能力，從前端介面、後端 API、AI 模型部署到 DevOps 自動化部署，一條龍完成。
             </p>
             <p>
@@ -824,35 +1086,53 @@
         </div>
 
         <div class="portfolio-grid">
+          <a href="https://weigo.netlify.app/" target="_blank" class="portfolio-card reveal">
+            <div class="preview"><iframe src="https://weigo.netlify.app/" loading="lazy" sandbox></iframe></div>
+            <div class="card-body">
+              <div class="index">01</div>
+              <h3>WEI GO Tesla 改裝官網</h3>
+              <p>3D 互動展示 + Google Sheet 串接，兼顧品牌形象與業務資訊更新效率。</p>
+            </div>
+          </a>
+          <a href="https://linev.netlify.app/" target="_blank" class="portfolio-card reveal">
+            <div class="preview"><iframe src="https://linev.netlify.app/" loading="lazy" sandbox></iframe></div>
+            <div class="card-body">
+              <div class="index">02</div>
+              <h3>小林車才 Tesla 維修官網</h3>
+              <p>3D 電池診斷互動 + TPC改CCS2 + 底盤專修 + 老車救星。</p>
+            </div>
+          </a>
+          <a href="https://scott93723.github.io/bmwhotel.com/" target="_blank" class="portfolio-card reveal">
+            <div class="preview"><iframe src="https://scott93723.github.io/bmwhotel.com/" loading="lazy" sandbox></iframe></div>
+            <div class="card-body">
+              <div class="index">03</div>
+              <h3>BMW Hotel 民宿網站</h3>
+              <p>M3 Power 黑化風格，結合性能感與精品住宿視覺語言。</p>
+            </div>
+          </a>
+          <a href="https://scott93723.github.io/TOM.com/" target="_blank" class="portfolio-card reveal">
+            <div class="preview"><iframe src="https://scott93723.github.io/TOM.com/" loading="lazy" sandbox></iframe></div>
+            <div class="card-body">
+              <div class="index">04</div>
+              <h3>TOM 水電修繕</h3>
+              <p>室內設計質感風格，提升服務信任感與品牌專業度。</p>
+            </div>
+          </a>
+          <a href="https://scott93723.github.io/Knowledge-Enterprise-Co-Ltd.com/" target="_blank" class="portfolio-card reveal">
+            <div class="preview"><iframe src="https://scott93723.github.io/Knowledge-Enterprise-Co-Ltd.com/" loading="lazy" sandbox></iframe></div>
+            <div class="card-body">
+              <div class="index">05</div>
+              <h3>弘道實業</h3>
+              <p>程式開發公司形象網站，聚焦技術能力、服務價值與商務形象呈現。</p>
+            </div>
+          </a>
           <article class="portfolio-card reveal">
-            <div class="index">01</div>
-            <h3>BES CCTV 監控系統</h3>
-            <p>332 台攝影機即時串流 + YOLO AI 辨識，整合企業級影像監控與即時分析流程。</p>
-          </article>
-          <article class="portfolio-card reveal">
-            <div class="index">02</div>
-            <h3>WEI GO Tesla 改裝官網</h3>
-            <p>3D 互動展示 + Google Sheet 串接，兼顧品牌形象與業務資訊更新效率。</p>
-          </article>
-          <article class="portfolio-card reveal">
-            <div class="index">03</div>
-            <h3>小林車才 Tesla 維修官網</h3>
-            <p>3D 電池診斷互動，強化技術服務展示與使用者理解門檻降低。</p>
-          </article>
-          <article class="portfolio-card reveal">
-            <div class="index">04</div>
-            <h3>BMW Hotel 民宿網站</h3>
-            <p>M3 Power 黑化風格，結合性能感與精品住宿視覺語言。</p>
-          </article>
-          <article class="portfolio-card reveal">
-            <div class="index">05</div>
-            <h3>TOM 水電修繕</h3>
-            <p>室內設計質感風格，提升服務信任感與品牌專業度。</p>
-          </article>
-          <article class="portfolio-card reveal">
-            <div class="index">06</div>
-            <h3>弘道實業</h3>
-            <p>程式開發公司形象網站，聚焦技術能力、服務價值與商務形象呈現。</p>
+            <div class="preview" style="display:flex;align-items:center;justify-content:center;background:rgba(252,238,9,0.04);"><span style="font-size:3rem;">🤖</span></div>
+            <div class="card-body">
+              <div class="index">06</div>
+              <h3>BES CCTV 監控系統</h3>
+              <p>332 台攝影機即時串流 + YOLO AI 辨識，企業級影像監控平台。</p>
+            </div>
           </article>
         </div>
       </div>
@@ -868,7 +1148,7 @@
 
         <div class="contact-grid">
           <div class="panel contact-card reveal">
-            <h3 style="margin-top:0; color: var(--primary);">直接聯絡</h3>
+            <h3 class="contact-title">直接聯絡</h3>
             <div class="contact-list">
               <div class="contact-item">
                 <small>GitHub</small>
@@ -888,7 +1168,7 @@
           <aside class="panel contact-panel reveal">
             <h3>Let's Build Something Real.</h3>
             <p>
-              如果你需要網站開發、AI 影像辨識整合、即時串流平台、後端 API 或部署流程建置，龍蝦王 能從企劃到上線完整支援。
+              如果你需要網站開發、AI 影像辨識整合、即時串流平台、後端 API 或部署流程建置，小寶 能從企劃到上線完整支援。
             </p>
           </aside>
         </div>
@@ -897,12 +1177,15 @@
   </main>
 
   <footer class="footer">
-    © 2077 龍蝦王. SYSTEM ONLINE. 🦞
+    © 2077 THOR. SYSTEM ONLINE.
   </footer>
 
   <script>
     const revealElements = document.querySelectorAll('.reveal');
     const progressBars = document.querySelectorAll('.progress-bar');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navAnchors = document.querySelectorAll('.nav-links a');
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
@@ -911,9 +1194,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.16
-    });
+    }, { threshold: 0.16 });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
@@ -928,11 +1209,25 @@
           observer.unobserve(bar);
         }
       });
-    }, {
-      threshold: 0.4
-    });
+    }, { threshold: 0.4 });
 
     progressBars.forEach(bar => progressObserver.observe(bar));
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('is-open');
+        navToggle.classList.toggle('is-active', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navAnchors.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('is-open');
+          navToggle.classList.remove('is-active');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   </script>
 </body>
 </html>
