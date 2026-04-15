@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Scott｜全端工程師履歷</title>
+  <meta name="description" content="Scott 的個人履歷網站，專長涵蓋前端、後端、AI 影像辨識、DevOps 與跨平台開發。" />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: rgba(10, 22, 38, 0.8);
+      --panel: rgba(11, 24, 43, 0.78);
+      --panel-strong: rgba(14, 31, 55, 0.92);
+      --line: rgba(96, 226, 255, 0.16);
+      --primary: #61f3ff;
+      --primary-strong: #00cfff;
+      --accent: #7c8cff;
+      --text: #e9f7ff;
+      --muted: #9bb4c8;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(0, 207, 255, 0.14), transparent 32%),
+        radial-gradient(circle at 85% 15%, rgba(124, 140, 255, 0.16), transparent 26%),
+        linear-gradient(180deg, rgba(6, 13, 25, 0.86), rgba(4, 10, 19, 0.97)),
+        url('images/bg.jpg') center top / cover fixed no-repeat;
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(97, 243, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(97, 243, 255, 0.025) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 14, 27, 0.7);
+      border-bottom: 1px solid rgba(97, 243, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 72px;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-shadow: 0 0 18px rgba(97, 243, 255, 0.35);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(97, 243, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.14);
+    }
+
+    .hero {
+      position: relative;
+      padding: 110px 0 90px;
+      background:
+        linear-gradient(135deg, rgba(6, 14, 27, 0.82), rgba(4, 11, 21, 0.64)),
+        url('images/bg1.jpg') center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(97, 243, 255, 0.08), transparent 52%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(97, 243, 255, 0.18);
+      background: rgba(10, 22, 38, 0.6);
+      color: var(--primary);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+      text-shadow: 0 0 28px rgba(97, 243, 255, 0.28);
+    }
+
+    .hero p {
+      margin: 20px 0 0;
+      max-width: 680px;
+      font-size: 1.04rem;
+      color: #c6d9e7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 150px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      color: #021019;
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      box-shadow: 0 14px 32px rgba(0, 207, 255, 0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(0, 207, 255, 0.3);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(97, 243, 255, 0.06);
+      border-color: rgba(97, 243, 255, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(97, 243, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(15, 32, 56, 0.88), rgba(9, 19, 34, 0.75));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .hero-highlights {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .highlight-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(97, 243, 255, 0.05);
+      border: 1px solid rgba(97, 243, 255, 0.08);
+    }
+
+    .highlight-item strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 84px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      letter-spacing: 0.12em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+
+    .section-heading p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(14, 29, 49, 0.92), rgba(9, 19, 34, 0.8));
+      border: 1px solid rgba(97, 243, 255, 0.12);
+      border-radius: var(--radius-md);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(97, 243, 255, 0.28);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+    }
+
+    .skill-card h3 {
+      margin: 0 0 14px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .skill-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .skill-card li {
+      position: relative;
+      padding-left: 18px;
+      color: #d6e8f4;
+    }
+
+    .skill-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 0 14px rgba(97, 243, 255, 0.45);
+    }
+
+    .proficiency-wrap {
+      padding: 28px;
+      background:
+        linear-gradient(180deg, rgba(14, 29, 49, 0.9), rgba(8, 18, 32, 0.82));
+      background-size: cover;
+    }
+
+    .progress-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 22px;
+    }
+
+    .progress-item {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(97, 243, 255, 0.08);
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .progress-meta span:last-child {
+      color: var(--primary);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.08);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 0 20px rgba(97, 243, 255, 0.4);
+      transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .profile-card {
+      padding: 34px;
+      background:
+        linear-gradient(180deg, rgba(9, 20, 36, 0.88), rgba(9, 20, 36, 0.82)),
+        url('images/bg1.jpg') center center / cover no-repeat;
+    }
+
+    .profile-text {
+      font-size: 1.06rem;
+      color: #d9ebf8;
+    }
+
+    .profile-text strong {
+      color: var(--primary);
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(97, 243, 255, 0.08);
+      border: 1px solid rgba(97, 243, 255, 0.14);
+      color: var(--text);
+      transition: 0.25s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      background: rgba(97, 243, 255, 0.12);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 230px;
+      padding: 22px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(97, 243, 255, 0.1);
+      background: linear-gradient(180deg, rgba(15, 31, 53, 0.95), rgba(9, 18, 33, 0.84));
+      transition: 0.3s ease;
+      isolation: isolate;
+    }
+
+    .portfolio-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(97, 243, 255, 0.24), transparent 65%);
+      z-index: -1;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(97, 243, 255, 0.26);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .portfolio-card .index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(97, 243, 255, 0.1);
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 18px;
+      box-shadow: inset 0 0 0 1px rgba(97, 243, 255, 0.1);
+    }
+
+    .portfolio-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .portfolio-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-card,
+    .contact-panel {
+      padding: 28px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(97, 243, 255, 0.05);
+      border: 1px solid rgba(97, 243, 255, 0.1);
+    }
+
+    .contact-item small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .contact-item a {
+      color: var(--primary);
+      word-break: break-all;
+    }
+
+    .contact-panel {
+      background:
+        linear-gradient(180deg, rgba(12, 28, 47, 0.92), rgba(8, 18, 33, 0.86)),
+        url('images/bg.jpg') center center / cover no-repeat;
+    }
+
+    .contact-panel h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    .contact-panel p {
+      margin: 0;
+      color: #d4e7f5;
+    }
+
+    .footer {
+      padding: 28px 16px 40px;
+      text-align: center;
+      color: rgba(233, 247, 255, 0.64);
+      font-size: 0.94rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-grid,
+      .portfolio-grid,
+      .skills-grid,
+      .progress-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 90px 0 72px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-header {
+        position: sticky;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0 16px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.1rem, 11vw, 3.2rem);
+      }
+
+      .hero-card,
+      .profile-card,
+      .proficiency-wrap,
+      .contact-card,
+      .contact-panel,
+      .skill-card,
+      .portfolio-card {
+        padding: 22px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="index">
+    <div class="container nav">
+      <a class="logo" href="#index">SCOTT / RESUME</a>
+      <ul class="nav-links">
+        <li><a href="#skill">技能</a></li>
+        <li><a href="#skilled">技能熟練度</a></li>
+        <li><a href="#profile">個人簡介</a></li>
+        <li><a href="#works">作品集</a></li>
+        <li><a href="#contact">聯絡方式</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">個人履歷 / Full-Stack Engineer</div>
+          <h1>你好，我是 <span>Scott</span><br />打造可落地的產品與系統</h1>
+          <p>
+            專注於全端開發、AI 影像辨識與企業級系統整合，能從前端互動體驗、後端 API、模型部署，到雲端與 DevOps 流程，完整串起實際可上線的產品。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#works">查看作品集</a>
+            <a class="btn btn-secondary" href="#contact">聯絡我</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal">
+          <h2>核心定位</h2>
+          <p>全端工程師 / AI 系統整合 / 企業監控平台開發</p>
+          <div class="hero-highlights">
+            <div class="highlight-item">
+              <strong>Python / Flask</strong>
+              後端 API、系統整合、資料流與部署實務
+            </div>
+            <div class="highlight-item">
+              <strong>YOLO / OpenCV</strong>
+              即時影像辨識、串流分析、AI 場域應用
+            </div>
+            <div class="highlight-item">
+              <strong>DevOps / CI/CD</strong>
+              Docker、自動化部署、GitHub Actions 與維運流程
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="skill">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="tag">Skill Matrix</span>
+          <h2>技能</h2>
+          <p>保留原本履歷網站的技能區塊架構，內容全面更新為目前的實戰技術堆疊。</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <h3>前端</h3>
+            <ul>
+              <li>HTML5 / CSS3 / JavaScript (ES6+)</li>
+              <li>Vue.js / jQuery</li>
+              <li>Bootstrap / RWD</li>
+              <li>Pug / SCSS</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>後端</h3>
+            <ul>
+              <li>Python / Flask</li>
+              <li>PHP</li>
+              <li>Node.js</li>
+              <li>RESTful API</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>AI / 影像</h3>
+            <ul>
+              <li>YOLO 影像辨識</li>
+              <li>OpenCV</li>
+              <li>MediaMTX (RTSP/WebRTC)</li>
+              <li>TensorFlow / PyTorch</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>DevOps</h3>
+            <ul>
+              <li>Git / GitHub</li>
+              <li>Docker</li>
+              <li>Linux / macOS Server</li>
+              <li>Cloudflare Tunnel</li>
+              <li>GitHub Actions CI/CD</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" style="grid-column: 1 / -1;">
+            <h3>其他</h3>
+            <ul style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); display: grid; gap: 10px 18px;">
+              <li>Flutter (iOS/Android)</li>
+              <li>Swift / Kotlin</li>
+              <li>SQL / SQLite / MySQL</li>
+              <li>Firebase</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skilled">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="tag">Proficiency</span>
+          <h2>技能熟練度</h2>
+          <p>以動畫進度條呈現主要技術能力，進場時自動展開。</p>
+        </div>
+
+        <div class="panel proficiency-wrap reveal">
+          <div class="progress-list">
+            <div class="progress-item">
+              <div class="progress-meta"><span>Python</span><span>85%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="85"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>JavaScript</span><span>80%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="80"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>HTML / CSS</span><span>90%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="90"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>AI / YOLO</span><span>75%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="75"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Flask</span><span>80%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="80"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Git / DevOps</span><span>85%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="85"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>Flutter</span><span>65%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="65"></div></div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-meta"><span>PHP</span><span>70%</span></div>
+              <div class="progress-track"><div class="progress-bar" data-progress="70"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="tag">Profile</span>
+          <h2>個人簡介</h2>
+        </div>
+
+        <div class="panel profile-card reveal">
+          <div class="profile-text">
+            <p>
+              <strong>Scott</strong> 是一位全端工程師，擅長 Python 後端開發、AI 影像辨識系統、企業級 CCTV 監控平台。
+              具備從零到一的產品開發能力，從前端介面、後端 API、AI 模型部署到 DevOps 自動化部署，一條龍完成。
+            </p>
+            <p>
+              重視實務落地與系統穩定性，熟悉大型串流場景、網站互動設計、企業形象網站製作與多技術棧整合，能根據商業需求快速建立可營運、可維護、可擴充的產品方案。
+            </p>
+          </div>
+          <div class="profile-links">
+            <a class="social-link" href="#" aria-label="Facebook">Facebook（暫時）</a>
+            <a class="social-link" href="https://github.com/scott93723" target="_blank" rel="noopener">GitHub / scott93723</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="tag">Portfolio</span>
+          <h2>作品集</h2>
+          <p>以卡片形式重新整理代表作品，視覺與排版更現代化，方便直接部署展示。</p>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-card reveal">
+            <div class="index">01</div>
+            <h3>BES CCTV 監控系統</h3>
+            <p>332 台攝影機即時串流 + YOLO AI 辨識，整合企業級影像監控與即時分析流程。</p>
+          </article>
+          <article class="portfolio-card reveal">
+            <div class="index">02</div>
+            <h3>WEI GO Tesla 改裝官網</h3>
+            <p>3D 互動展示 + Google Sheet 串接，兼顧品牌形象與業務資訊更新效率。</p>
+          </article>
+          <article class="portfolio-card reveal">
+            <div class="index">03</div>
+            <h3>小林車才 Tesla 維修官網</h3>
+            <p>3D 電池診斷互動，強化技術服務展示與使用者理解門檻降低。</p>
+          </article>
+          <article class="portfolio-card reveal">
+            <div class="index">04</div>
+            <h3>BMW Hotel 民宿網站</h3>
+            <p>M3 Power 黑化風格，結合性能感與精品住宿視覺語言。</p>
+          </article>
+          <article class="portfolio-card reveal">
+            <div class="index">05</div>
+            <h3>TOM 水電修繕</h3>
+            <p>室內設計質感風格，提升服務信任感與品牌專業度。</p>
+          </article>
+          <article class="portfolio-card reveal">
+            <div class="index">06</div>
+            <h3>弘道實業</h3>
+            <p>程式開發公司形象網站，聚焦技術能力、服務價值與商務形象呈現。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="tag">Contact</span>
+          <h2>聯絡方式</h2>
+          <p>保留原本站聯絡區結構，改為更清楚的資訊卡呈現。</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="panel contact-card reveal">
+            <h3 style="margin-top:0; color: var(--primary);">直接聯絡</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <small>GitHub</small>
+                <a href="https://github.com/scott93723" target="_blank" rel="noopener">https://github.com/scott93723</a>
+              </div>
+              <div class="contact-item">
+                <small>Email</small>
+                <a href="mailto:scott93723@gmail.com">scott93723@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <small>Facebook</small>
+                <a href="#">#</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="panel contact-panel reveal">
+            <h3>Let's Build Something Real.</h3>
+            <p>
+              如果你需要網站開發、AI 影像辨識整合、即時串流平台、後端 API 或部署流程建置，Scott 能從企劃到上線完整支援。
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 Scott. ALL RIGHTS RESERVED
+  </footer>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    const progressBars = document.querySelectorAll('.progress-bar');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.16
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    const progressObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const value = bar.getAttribute('data-progress') || 0;
+          requestAnimationFrame(() => {
+            bar.style.width = value + '%';
+          });
+          observer.unobserve(bar);
+        }
+      });
+    }, {
+      threshold: 0.4
+    });
+
+    progressBars.forEach(bar => progressObserver.observe(bar));
+  </script>
+</body>
+</html>
