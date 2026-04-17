@@ -54,3 +54,20 @@ if (navToggle && navLinks) {
     });
   });
 }
+
+// Lazy-load portfolio iframes
+if ('IntersectionObserver' in window) {
+  const iframeObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const iframe = entry.target;
+        if (iframe.dataset.src) {
+          iframe.src = iframe.dataset.src;
+          iframe.removeAttribute('data-src');
+        }
+        obs.unobserve(iframe);
+      }
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('.preview iframe[data-src]').forEach(f => iframeObserver.observe(f));
+}
